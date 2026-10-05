@@ -4,28 +4,53 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
 class MainController extends Controller
 {
-    public function showIndex()
+    // 1. Публичное свойство с массивом товаров (минимум 8 шт.)
+    public $products = [
+        ['id' => 1, 'title' => 'Ноутбук ASUS', 'price' => 45000, 'path' => 'images.jpg'],
+        ['id' => 2, 'title' => 'Мышь Logitech', 'price' => 1500, 'path' => 'priroda.avif'],
+        ['id' => 3, 'title' => 'Клавиатура Keychron', 'price' => 8900, 'path' => 'images.jpg'],
+        ['id' => 4, 'title' => 'Монитор Dell 27"', 'price' => 22000, 'path' => 'priroda.avif'],
+        ['id' => 5, 'title' => 'USB-хаб', 'price' => 800, 'path' => 'images.jpg'],
+        ['id' => 6, 'title' => 'Веб-камера HD', 'price' => 3200, 'path' => 'priroda.avif'],
+        ['id' => 7, 'title' => 'Наушники Sony', 'price' => 12000, 'path' => 'images.jpg'],
+        ['id' => 8, 'title' => 'Коврик для мыши', 'price' => 500, 'path' => 'priroda.avif'],
+        ['id' => 9, 'title' => 'SSD Samsung 1TB', 'price' => 7500, 'path' => 'images.jpg'],
+        ['id' => 10, 'title' => 'Оперативная память 16GB', 'price' => 4200, 'path' => 'priroda.avif'],
+    ];
+
+   public function showIndex()
     {
         return view('home');
     }
 
+    
     public function showArray()
     {
-        $array = [
-            ['id' => 1, 'title' => 'продукт 1', 'price' => 500, 'path' => 'priroda.avif'],
-            ['id' => 2, 'title' => 'продукт 2', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 3, 'title' => 'продукт 3', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 4, 'title' => 'продукт 4', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 5, 'title' => 'продукт 5', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 6, 'title' => 'продукт 6', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 7, 'title' => 'продукт 7', 'price' => 1500, 'path' => 'images.jpg'],
-            ['id' => 8, 'title' => 'продукт 8', 'price' => 1500, 'path' => 'images.jpg'],
+        return view('array', ['products' => $this->products]);
+    }
 
-        ];
+   
+    public function shuffleProducts()
+    {
+        $shuffled = $this->products;
+        shuffle($shuffled);
+        return view('array', ['products' => $shuffled]);
+    }
 
-        return view('array', compact('array'));
+    
+    public function sortProducts()
+    {
+        $sorted = $this->products;
+        usort($sorted, fn($a, $b) => $a['price'] <=> $b['price']);
+        return view('array', ['products' => $sorted]);
+    }
+
+    
+    public function filterProducts()
+    {
+        $filtered = array_values(array_filter($this->products, fn($item) => $item['price'] > 1000));
+        return view('array', ['products' => $filtered]);
     }
 }

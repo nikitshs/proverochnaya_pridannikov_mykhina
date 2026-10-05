@@ -25,7 +25,7 @@
     
     <main class="flex-grow max-w-6xl mx-auto px-4 py-8">
         <h1 class="text-3xl font-extrabold text-gray-900 mb-6 text-center md:text-left">
-            Добро пожаловать на наш сайт!
+            Добро пожаловать на мой сайт!
         </h1>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
