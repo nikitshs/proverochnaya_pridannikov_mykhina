@@ -15,7 +15,7 @@
             </div>
             <nav>
                 <ul class="flex space-x-6 font-medium text-gray-600">
-                    <li><a href="/" class="hover:text-indigo-600 transition">Главная</a></li>
+                    <li><a href="/home" class="hover:text-indigo-600 transition">Главная</a></li>
                     <li><a href="/array" class="hover:text-indigo-600 transition">Массивы</a></li>
                 </ul>
             </nav>
@@ -43,7 +43,7 @@
    
     <footer class="bg-gray-900 text-gray-400 py-6 mt-auto">
         <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-            <p>&copy; {{ date('Y') }} | Приданников Никита | Все права защищены.</p>
+            <p>&copy; 2026 | Приданников Никита | Все права защищены.</p>
         </div>
     </footer>
 

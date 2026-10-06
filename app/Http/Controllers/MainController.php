@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    // 1. Публичное свойство с массивом товаров (минимум 8 шт.)
     public $products = [
         ['id' => 1, 'title' => 'Ноутбук ASUS', 'price' => 45000, 'path' => 'images.jpg'],
         ['id' => 2, 'title' => 'Мышь Logitech', 'price' => 1500, 'path' => 'priroda.avif'],
@@ -43,14 +42,26 @@ class MainController extends Controller
     public function sortProducts()
     {
         $sorted = $this->products;
-        usort($sorted, fn($a, $b) => $a['price'] <=> $b['price']);
+        usort($sorted, function($a, $b) {
+            if($a['price'] < $b['price']) {
+                return -1;
+            } elseif($a['price'] > $b['price']) {
+                return 1;
+            } else {
+                return 0;
+            }
+            
+        }); 
         return view('array', ['products' => $sorted]);
     }
 
     
     public function filterProducts()
     {
-        $filtered = array_values(array_filter($this->products, fn($item) => $item['price'] > 1000));
+        $filtered = array_filter($this->products, function($item) {
+            return $item['price'] > 1000;
+           
+        });
         return view('array', ['products' => $filtered]);
     }
 }

@@ -30,15 +30,15 @@
         <div class="flex flex-wrap justify-center gap-3 mb-8">
             <a href="{{ route('array.shuffle') }}" 
                class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition shadow-sm">
-                🔀 Перемешать
+                Перемешать
             </a>
             <a href="{{ route('array.sort') }}" 
                class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition shadow-sm">
-                📊 По цене ↑
+                По цене
             </a>
             <a href="{{ route('array.filter') }}" 
                class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 transition shadow-sm">
-                🔍 Только > 1000₽
+                Только > 1000₽
             </a>
             <a href="{{ route('array') }}" 
                class="px-4 py-2 bg-indigo-600 rounded-lg text-sm font-medium text-white hover:bg-indigo-700 transition shadow-sm">
@@ -63,7 +63,7 @@
                         </div>
                         
                         <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-50">
-                            <p class="text-xl font-black text-indigo-600">{{ number_format($item['price'], 0, ',', ' ') }} ₽</p>
+                            <p class="text-xl font-black text-indigo-600">{{$item['price']}} ₽</p>
                             <button class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
                                 Купить
                             </button>
@@ -84,7 +84,7 @@
    
     <footer class="bg-gray-900 text-gray-400 py-6 mt-auto">
         <div class="max-w-6xl mx-auto px-4 text-center text-sm">
-            <p>&copy; {{ date('Y') }} | Приданников Никита | Все права защищены.</p>
+            <p>&copy; 2026 | Приданников Никита | Все права защищены.</p>
         </div>
     </footer>
 
