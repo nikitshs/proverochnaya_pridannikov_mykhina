@@ -18,6 +18,8 @@
                 <input type="submit" value="Удалить">
             </form>
         @endforeach
+
+        <a href="{{ route('reports.create') }}">Создать заявление</a>
     </main>
 </body>
 </html>

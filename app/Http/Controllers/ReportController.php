@@ -9,11 +9,20 @@ class ReportController extends Controller
 {
     public function index(){
         $reports = Report::all();
-        return view('report.index', compact('reports'));
+        return view('reports.index', compact('reports'));
     }
 
     public function destroy(Report $report){
         $report -> delete();
+        return redirect()->back();
+    }
+
+    public function store(Request $request, Report $report){
+        $data = $request -> validate ([
+            'number' => 'string',
+            'description' => 'string',
+        ]);
+        $report->create($data);
         return redirect()->back();
     }
 }
