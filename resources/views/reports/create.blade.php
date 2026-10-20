@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
 <body>
@@ -11,13 +12,13 @@
         @csrf
 
     <div>
-        <label for="number">Номер авто:</label>
-        <input type="text" name="number">
+        <label for="number" >Номер авто:</label>
+        <input type="text" name="number" required>
     </div>
 
     <div>
         <label for="description">Описание заявки:</label>
-        <textarea name="description"></textarea>
+        <textarea name="description" required></textarea>
     </div>
 
     <button type="submit">Создать</button>
