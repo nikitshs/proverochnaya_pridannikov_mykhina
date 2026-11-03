@@ -9,10 +9,13 @@ use App\Models\Status;
 class ReportController extends Controller
 {
     public function index(Request $request){
+      
         $sort = $request->input('sort');
         if($sort != 'asc' && $sort != 'desc') {
             $sort = 'desc';
         }
+
+       
 
         $status = $request->input('status');
         $validate = $request->validate([
@@ -26,6 +29,8 @@ class ReportController extends Controller
             $reports = Report::orderBy('created_at', $sort)
             ->paginate(8);
         }
+
+      
 
         $statuses = Status::all();
         return view('reports.index', compact('reports', 'statuses', 'sort', 'status'));

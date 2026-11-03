@@ -34,11 +34,11 @@
         <div>
         <span>Сортировка по дате создания:</span>
         <div class="flex items-center gap-2 mb-4">
-            <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => 'status']) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
+            <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
                 Сначала новые
             </a>
 
-            <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => 'status']) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
+            <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
                 Сначала старые
             </a>
         </div>
@@ -56,7 +56,7 @@
                 @endforeach
             </ul>
         </div>
-        {{$reports->appends(request()->query())->links()}}
+        {{ $reports->appends(request()->query())->links() }}
 
 
 
