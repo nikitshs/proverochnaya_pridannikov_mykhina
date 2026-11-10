@@ -24,10 +24,10 @@ class ReportController extends Controller
         if($validate){
             $reports = Report::where('status_id', $status)
             ->orderBy('created_at', $sort)
-            ->paginate(8);
+            ->paginate(5);
         } else {
             $reports = Report::orderBy('created_at', $sort)
-            ->paginate(8);
+            ->paginate(5);
         }
 
       
@@ -46,6 +46,8 @@ class ReportController extends Controller
             'number' => 'string',
             'description' => 'string',
         ]);
+         $data['status_id'] = 1;
+
         $report->create($data);
         return redirect()->route('reports.index');
     }
