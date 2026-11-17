@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <x-app-layout>
      <form method="POST" action="{{ route('reports.store') }}">
       
         @csrf
@@ -22,6 +23,8 @@
     </div>
 
     <button type="submit">Создать</button>
+    
 </form>
+</x-app-layout>
 </body>
 </html>

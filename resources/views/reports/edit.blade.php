@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <x-app-layout>
      <form method="POST" action="{{ route('reports.update', $report->id) }}">
       
         @csrf
@@ -22,6 +23,7 @@
     </div>
 
     <button type="submit" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 px-4 rounded transition duration-200">Обновить</button>
-</form>
+    </form>
+    </x-app-layout>
 </body>
 </html>
