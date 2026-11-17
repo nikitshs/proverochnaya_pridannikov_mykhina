@@ -16,7 +16,8 @@
             <p >Гос номер: {{$report->number}}</p>
             <p>Описание: {{$report->description}}</p>
             <p>Дата создания заявки: {{$report->created_at}}</p>
-            <p>Статус заявления: {{$report->status->name}}</p>
+           <p>Статус заявления: {{ $report->status?->name}}</p>
+
        <a href="{{ route('reports.edit', $report) }}" 
    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 px-4 rounded transition duration-200">
     Изменить
