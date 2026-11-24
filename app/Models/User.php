@@ -35,4 +35,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Report::class);
     }
+
+    protected $fillable = [
+        'name',
+        'lastname',
+        'middlename',
+        'email',
+        'login',
+        'tel',
+        'password',
+    ];
 }
