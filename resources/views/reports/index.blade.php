@@ -1,66 +1,58 @@
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <x-app-layout>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+<x-app-layout>
     <main class="p-[50px]">
-    <h1 class="text-3xl font-bold mb-[25px]">Список заявок</h1>
+        <h1 class="text-3xl font-bold mb-[25px]">Список заявок</h1>
 
-     <div>
-        <span>Сортировка по дате создания:</span>
-        <div class="flex items-center gap-2 mb-4">
-            <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
-                Сначала новые
-            </a>
+        <div>
+            <span>Сортировка по дате создания:</span>
+            <div class="flex items-center gap-2 mb-4">
+                <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
+                    Сначала новые
+                </a>
 
-            <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
-                Сначала старые
-            </a>
+                <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => $status]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
+                    Сначала старые
+                </a>
+            </div>
+
+            <div class="mb-[60px]">
+                <p>Фильтрация по списку заявки:</p>
+                <ul class="flex flex-col gap-2.5">
+                    @foreach($statuses as $status)
+                        <li>
+                            <a href="{{ route('reports.index', ['sort' => $sort, 'status' => $status->id]) }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
+                                {{ $status->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                <a href="{{ route('reports.index') }}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition mt-[15px]">Все</a>
+            </div>
         </div>
-        
 
-     <div class="mb-[60px]">
-            <p>Фильтрация по списку заявки:</p>
-            <ul class="flex flex-col gap-2.5">
-                @foreach($statuses as $status)
-                <li class="">
-                    <a href="{{route('reports.index', ['sort' => $sort, 'status' => $status->id])}}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition">
-                        {{$status->name}}
-                    </a>
-                    
-                </li>
-                
-                @endforeach
+        <a href="{{ route('reports.create') }}" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-medium py-1.5 px-4 rounded transition duration-200 mb-[20px]">
+            Создать заявление
+        </a>
 
-            </ul>
-            <a href="{{route('reports.index')}}" class="inline-block px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition mt-[15px]">Все</a>
-        </div>
-    
-        <a href="{{ route('reports.create') }}" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-medium py-1.5 px-4 rounded transition duration-200 mb-[20px]">Создать заявление</a>
         @foreach ($reports as $report)
-        
-            <p >Гос номер: {{$report->number}}</p>
-            <p>Описание: {{$report->description}}</p>
-            <p>Дата создания заявки: {{$report->created_at}}</p>
-            <p>Статус заявления: {{$report->status->name}}</p>
-       <a href="{{ route('reports.edit', $report) }}" 
-   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 px-4 rounded transition duration-200">
-    Изменить
-</a>
-</div>
+            <div class="mb-[40px]">
+                <p>Гос номер: {{ $report->number }}</p>
+                <p>Описание: {{ $report->description }}</p>
+                <p>Дата создания заявки: {{ $report->created_at }}</p>
+                <p>Статус заявления: {{ $report->status->name }}</p>
 
+                <a href="{{ route('reports.edit', $report) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1.5 px-4 rounded transition duration-200 mt-[15px]">
+                    Изменить
+                </a>
 
-            <form method="POST" action="{{route('reports.destroy', $report->id)}}" class="mb-[40px] mt-[20px]">
-                @method('delete')
-                @csrf
-                <input type="submit" value="Удалить" class="pointer inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-1.5 px-4 rounded transition duration-200">
-            </form>
+                <form method="POST" action="{{ route('reports.destroy', $report->id) }}" class="mt-[15px]">
+                    @method('delete')
+                    @csrf
+                    <input type="submit" value="Удалить" class="cursor-pointer inline-block bg-red-600 hover:bg-red-700 text-white font-medium py-1.5 px-4 rounded transition duration-200">
+                </form>
+            </div>
         @endforeach
-</div>
-       
 
-       
         {{ $reports->appends(request()->query())->links() }}
-
-
-
     </main>
-    </x-app-layout>
+</x-app-layout>

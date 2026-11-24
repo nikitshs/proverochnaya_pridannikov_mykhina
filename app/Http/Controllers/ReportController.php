@@ -24,11 +24,13 @@ class ReportController extends Controller
         ]);
         if($validate){
             $reports = Report::where('status_id', $status)
+            ->where('user_id', Auth::user()->id)
             ->orderBy('created_at', $sort)
-            ->paginate(5);
+            ->paginate(8);
         } else {
-            $reports = Report::orderBy('created_at', $sort)
-            ->paginate(5);
+            $reports = Report::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', $sort)
+            ->paginate(8);
         }
 
       
